@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="createSubscriberTable" author="landsreyk">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="subscriber"/>
+            </not>
+        </preConditions>
+        <createTable tableName="subscriber">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="telegram_id" type="bigint"/>
+            <column name="price" type="decimal"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="makeTelegramIdUnique" author="landsreyk">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="subscriber"/>
+        </preConditions>
+        <addUniqueConstraint tableName="subscriber" columnNames="telegram_id"/>
+    </changeSet>
+    <changeSet id="add_last_notified_column" author="landsreyk">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="subscriber"/>
+        </preConditions>
+        <addColumn tableName="subscriber">
+            <column name="last_notified" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add_chat_id_column" author="landsreyk">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="subscriber"/>
+        </preConditions>
+        <addColumn tableName="subscriber">
+            <column name="chat_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

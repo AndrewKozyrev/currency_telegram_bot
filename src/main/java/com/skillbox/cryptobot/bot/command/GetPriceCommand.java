@@ -1,6 +1,6 @@
 package com.skillbox.cryptobot.bot.command;
 
-import com.skillbox.cryptobot.service.CryptoCurrencyService;
+import com.skillbox.cryptobot.service.impl.CryptoCurrencyService;
 import com.skillbox.cryptobot.utils.TextUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class GetPriceCommand implements IBotCommand {
             answer.setText("Текущая цена биткоина " + TextUtil.toString(service.getBitcoinPrice()) + " USD");
             absSender.execute(answer);
         } catch (Exception e) {
-            log.error("Ошибка возникла /get_price методе", e);
+            log.error("Ошибка возникла в /get_price методе", e);
         }
     }
 }

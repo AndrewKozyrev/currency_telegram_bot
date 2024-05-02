@@ -8,14 +8,21 @@ telegram:
       delay:
         value: 10
         unit: MINUTES
+    update-rate:
+      value: 2
+      unit: MINUTES
 
 binance:
   api:
     getPrice: https://api.binance.com/api/v3/avgPrice?symbol=BTCUSDT
 
-db:
-  driver:
-    name: org.postgresql.Driver
-  url: jdbc:postgresql://localhost:5432/db
-  user: root
-  password: root
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true

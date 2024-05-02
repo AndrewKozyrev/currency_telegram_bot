@@ -8,10 +8,10 @@ plugins {
 
 ext {
 	telegrambotsVersion = '6.8.0'
-	logbackVersion = '1.4.8'
+	logbackVersion = '1.4.12'
 	jaxbApiVersion = '2.3.1'
-	postgresqlDriverVersion = '42.6.0'
-	springOrmVersion = '6.0.13'
+	postgresqlDriverVersion = '42.7.3'
+	liquibaseVersion = '4.27.0'
 }
 
 group = 'com.example'
@@ -38,9 +38,9 @@ dependencies {
 
 	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: jaxbApiVersion
 	implementation group: 'org.postgresql', name: 'postgresql', version: postgresqlDriverVersion
-	implementation group: 'org.springframework', name: 'spring-orm', version: springOrmVersion
 
-
+	implementation group: 'org.liquibase', name: 'liquibase-core', version: liquibaseVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.2.5'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
